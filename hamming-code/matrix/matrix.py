@@ -13,9 +13,12 @@ class matrix:
     new_matrix = []
     for i, row in enumerate(self.values):
       new_row = []
-      for j, element in enumerate(row):
-         new_row.append(element*other.values[j][i])
-      new_matrix.append(new_row)
+      for k in range(len(other.values[0])):
+        counter = 0
+        for j, element in enumerate(row):
+          counter += element*other.values[j][k]
+        new_row.append(counter)
+      new_matrix.append(new_row)  
     return matrix(new_matrix)
       
   
@@ -27,6 +30,6 @@ class matrix:
   
     
 hoi = matrix([[1, 2], [3, 4]])
-doei = matrix([[1, 0], [0, 1]])
+doei = matrix([[1, 1], [1, 1]])
 
 print(hoi*doei)
