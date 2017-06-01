@@ -20,16 +20,18 @@ class matrix:
         new_row.append(counter)
       new_matrix.append(new_row)  
     return matrix(new_matrix)
-      
+
+
+  #takes modulo two of each entry in the matrix    
+  def getbinary(self):
+    new_matrix = []
+    for row in self.values:
+      new_row = []
+      for element in row:
+        new_element = element%2
+        new_row.append(new_element)
+      new_matrix.append(new_row)
+    return new_matrix
   
   def __str__(self):
     return str(self.values)
-  
-  
-  
-  
-    
-hoi = matrix([[1, 2], [3, 4]])
-doei = matrix([[1, 1], [1, 1]])
-
-print(hoi*doei)
