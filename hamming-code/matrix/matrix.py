@@ -21,7 +21,18 @@ class matrix:
       new_matrix.append(new_row)  
     return matrix(new_matrix)
 
+  #adds two matrices
+  def __add__(self, other):
+    new_matrix = []
+    for i, row in enumerate(self.values):
+      new_row = []
+      for j, element in enumerate(row):
+        new_element = element + other.values[i][j]
+        new_row.append(new_element)
+      new_matrix.append(new_row)
+    return new_matrix
 
+  
   #takes modulo two of each entry in the matrix    
   def getbinary(self):
     new_matrix = []
@@ -35,3 +46,7 @@ class matrix:
   
   def __str__(self):
     return str(self.values)
+
+
+
+
