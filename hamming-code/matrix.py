@@ -1,5 +1,4 @@
-class matrix:
-
+class Matrix:
   def __init__(self, values):
     self.values = values
   
@@ -19,7 +18,7 @@ class matrix:
           counter += element*other.values[j][k]
         new_row.append(counter)
       new_matrix.append(new_row)  
-    return matrix(new_matrix)
+    return Matrix(new_matrix)
 
   #adds two matrices
   def __add__(self, other):
@@ -47,36 +46,5 @@ class matrix:
   def __str__(self):
     return str(self.values)
 
-#the encodematrix
-G = matrix([
-  [1, 1, 0, 1],
-  [1, 0, 1, 1],
-  [1, 0, 0, 0],
-  [0, 1, 1, 1],
-  [0, 1, 0, 0],
-  [0, 0, 1, 0],
-  [0, 0, 0, 1]
-  ])
-
-#the parity check matrix
-H = matrix([
-  [1, 0, 1, 0, 1, 0, 1],
-  [0, 1, 1, 0, 0, 1, 1],
-  [0, 0, 0, 1, 1, 1, 1]
-  ])
-
-#takes a string with a four 0's or 1's as argument and adds the parity bits,
-#returns result as vector
-def encodemessage(message):
-  #turns the message into a column vector
-  vectorlist = []
-  for i in range(4):
-    vectorlist.append([int(message[i])])
-  vector = matrix(vectorlist)
-  #encodes with the encode matrix
-  vector_with_paritybits = G*vector
-  return vector_with_paritybits.getbinary()
-
-#boodschap = input('Vul hier je boodschap in: ')
-#boodschapbinair = map(bin, bytearray(boodschap, 'utf8'))
-
+def test_import():
+    print("jep")
