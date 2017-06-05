@@ -46,5 +46,3 @@ class Matrix:
   def __str__(self):
     return str(self.values)
 
-def test_import():
-    print("jep")
