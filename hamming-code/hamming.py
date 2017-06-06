@@ -18,31 +18,25 @@ checking_matrix = Matrix([
   [0, 0, 0, 1, 1, 1, 1]
   ])
 
-#Takes a string with a four 0's or 1's as argument and adds the parity bits
+#Takes binary vector of length 4 and adds the parity bits
 #Returns result as vector
 def encodemessage(message):
-  #Turns the message into a column vector
-  vectorlist = []
-  for i in range(4):
-    vectorlist.append([int(message[i])])
-  vector = Matrix(vectorlist)
-  #Encodes with the encode matrix
-  vector_with_paritybits = encoding_matrix*vector
-  return vector_with_paritybits.getbinary()
+  print(message.transpose())
+  vector_with_paritybits = encoding_matrix*(message.transpose())
+  return Matrix(vector_with_paritybits.getbinary())
 
-
+#returns true if the message is not corrupted, returns false if message is
+#corrupted. To be implemented: repairing the message if there is a mistake
 def checkmessage(message):
-  #Turns the message into a column vector
-  vectorlist = []
-  for i in range(4):
-    vectorlist.append([int(message[i])])
-  vector = Matrix(vectorlist)
-  #Encodes with the encode matrix
-  vector_with_paritybits = checking_matrix*vector
-  return vector_with_paritybits.getbinary()
-
-
+  vector = checking_matrix*message
+  checker = True
+  for element in vector.values[0]:
+    if element == 1:
+      checker = False
+  return checker
+   
 #Example:
 #boodschap = input('Vul hier je boodschap in: ')
-#boodschapbinair = map(bin, bytearray(boodschap, 'utf8'))
-
+#boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
+testvector = Matrix([[1, 0, 1, 1]])
+print(checkmessage(encodemessage(testvector)))
