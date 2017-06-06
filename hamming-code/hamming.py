@@ -29,16 +29,22 @@ def encodemessage(message):
 def repairmessage(message):
   vector = checking_matrix*message
   checker = True
+  #checks if the return vector is the zero vector. If this is the case
+  #checker = True, and there is no mistake
   for element in vector.values[0]:
     if element == 1:
       checker = False
   if checker == False:
+    #finds out at what position the mistake is and saves it as
+    #counter
     counter = 0
     for i, element enumerate(vector.values[0]):
       counter += element * 2 ** i
   else:
-    return vector
+    #in this case checker = True, so it returns the message
+    return message
   new_message = message.values[0]
+  #fixes the message
   if new_message[counter - 1] == 0:
     new_message[counter - 1] = 1
   else:
