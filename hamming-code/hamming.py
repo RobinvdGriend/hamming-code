@@ -51,7 +51,23 @@ def repairmessage(message):
     new_message[counter - 1] = 0
   return Matrix(new_message)
   
-  
+def messageconverter(message):
+  grotelijst = []
+  #Appends the described byte into the list with matrices
+  def byteappender(byte):
+    lijst = []
+    for i in byte:
+      lijst.append(int(i))
+    grotelijst.append(Matrix(lijst))
+  #For every letter in removes b from the string
+  for letter in boodschapbinair:
+    emptystring = ''
+    for i in range(0,9):
+      if i != 1:
+        emptystring = emptystring + letter[i]
+    byteappender(emptystring[:len(emptystring)//2])
+    byteappender(emptystring[len(emptystring)//2:])
+  return grotelijst  
 
 #Example:
 boodschap = input('Vul hier je boodschap in: ')
