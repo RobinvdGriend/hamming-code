@@ -32,15 +32,19 @@ def repairmessage(message):
   for element in vector.values[0]:
     if element == 1:
       checker = False
-  if checker = False:
+  if checker == False:
     counter = 0
     for i, element enumerate(vector.values[0]):
       counter += element * 2 ** i
+  else:
+    return vector
   new_message = message.values[0]
   if new_message[counter - 1] == 0:
     new_message[counter - 1] = 1
   else:
     new_message[counter - 1] = 0
+  return Matrix(new_message)
+  
   
 
 #Example:
