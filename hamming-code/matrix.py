@@ -6,6 +6,18 @@ class Matrix:
   #row and column column
   def element(self, row, column):
     return self.values[row - 1][column - 1]
+
+  #returns transpose
+  def transpose(self):
+    new_matrix = []
+    for i in range(len(self.values[0])):
+      new_row = []
+      for j, row in enumerate(self.values):
+        new_row.append(self.values[j][i])
+      new_matrix.append(new_row)
+    return Matrix(new_matrix)
+
+
   
   #takes two matrices A and B as arguments and returns AB. Overrides the * operator
   def __mul__(self, other):
