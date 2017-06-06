@@ -1,6 +1,3 @@
-import random
-import math
-
 from matrix import Matrix
 
 #The encoding matrix
@@ -28,30 +25,27 @@ def encodemessage(message):
   vector_with_paritybits = encoding_matrix*(message.transpose())
   return Matrix(vector_with_paritybits.getbinary())
 
-#returns true if the message is not corrupted, returns false if message is
-#corrupted. To be implemented: repairing the message if there is a mistake
-def checkmessage(message):
+#repairs message, may not work, can't test it yet 
+def repairmessage(message):
   vector = checking_matrix*message
   checker = True
   for element in vector.values[0]:
     if element == 1:
       checker = False
-  return checker
-   
+  if checker = False:
+    counter = 0
+    for i, element enumerate(vector.values[0]):
+      counter += element * 2 ** i
+  new_message = message.values[0]
+  if new_message[counter - 1] == 0:
+    new_message[counter - 1] = 1
+  else:
+    new_message[counter - 1] = 0
+  
+
 #Example:
-#boodschap = input('Vul hier je boodschap in: ')
-<<<<<<< HEAD
-#boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
+boodschap = input('Vul hier je boodschap in: ')
+boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
+print(boodschapbinair)
 testvector = Matrix([[1, 0, 1, 1]])
-print(checkmessage(encodemessage(testvector)))
-=======
-#boodschapbinair = map(bin, bytearray(boodschap, 'utf8'))
-
-#Takes a number n, rounds it down to the greatest multiple of 4
-#and generates a random list of that many bits
-def random_bytes(n):
-    bits = [random.choice([0,1]) for i in range(n)]
-    return [bits[k:k+4] for k in range(math.floor(len(bits)/4))]
-
-    
->>>>>>> e729978bdf6ffd2a862af71751bbd6ac445db070
+print(repairmessage(encodemessage(testvector)))
