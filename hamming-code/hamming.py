@@ -1,3 +1,6 @@
+import random
+import math
+
 from matrix import Matrix
 
 #The encoding matrix
@@ -37,6 +40,18 @@ def checkmessage(message):
    
 #Example:
 #boodschap = input('Vul hier je boodschap in: ')
+<<<<<<< HEAD
 #boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
 testvector = Matrix([[1, 0, 1, 1]])
 print(checkmessage(encodemessage(testvector)))
+=======
+#boodschapbinair = map(bin, bytearray(boodschap, 'utf8'))
+
+#Takes a number n, rounds it down to the greatest multiple of 4
+#and generates a random list of that many bits
+def random_bytes(n):
+    bits = [random.choice([0,1]) for i in range(n)]
+    return [bits[k:k+4] for k in range(math.floor(len(bits)/4))]
+
+    
+>>>>>>> e729978bdf6ffd2a862af71751bbd6ac445db070
