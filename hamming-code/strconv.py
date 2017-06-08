@@ -12,3 +12,13 @@ def str_to_codelist(string):
         codelist.append(Matrix([code[:4]]))
         codelist.append(Matrix([code[4:]]))
     return codelist
+
+def codelist_to_str(codelist):
+    chars = []
+    for code in codelist:
+        bits = code.values[0]
+        #Still a problem with the chr() function call, "hoi" gets
+        #translated into weird characters
+        chars.append(chr(int(''.join([str(bit) for bit in bits]), 2)))
+    return "".join(chars)
+
