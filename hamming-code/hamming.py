@@ -72,8 +72,8 @@ def messageconverter(message):
   return grotelijst
 
 #Example:
-boodschap = input('Vul hier je boodschap in: ')
-boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
-print(boodschapbinair)
-testvector = Matrix([[1, 0, 1, 1]])
-print(repairmessage(encodemessage(testvector)))
+#boodschap = input('Vul hier je boodschap in: ')
+#boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
+#print(boodschapbinair)
+#testvector = Matrix([[1, 0, 1, 1]])
+#print(repairmessage(encodemessage(testvector)))
