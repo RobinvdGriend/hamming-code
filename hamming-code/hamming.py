@@ -3,20 +3,24 @@ import strconv
 
 #The encoding matrix
 encoding_matrix = Matrix([
-    [1, 1, 0, 1],
-    [1, 0, 1, 1],
     [1, 0, 0, 0],
-    [0, 1, 1, 1],
     [0, 1, 0, 0],
     [0, 0, 1, 0],
-    [0, 0, 0, 1]
+    [0, 0, 0, 1],
+    [1, 1, 0, 1],
+    [1, 0, 1, 1],
+    [0, 1, 1, 1]
     ])
 
-#The parity checking matrix
+
+#generating matrix
+generator_matrix = encoding_matrix.transpose()
+
+#checking matrix
 checking_matrix = Matrix([
-  [1, 0, 1, 0, 1, 0, 1],
-  [0, 1, 1, 0, 0, 1, 1],
-  [0, 0, 0, 1, 1, 1, 1]
+  [0, 0, 0, 1, 1, 1, 1],
+  [1, 1, 0, 0, 0, 1, 1],
+  [1, 0, 1, 0, 1, 0, 1]
   ])
 
 #Takes binary vector of length 4 and adds the parity bits
@@ -39,17 +43,17 @@ def repairmessage(message):
     #finds out at what position the mistake is and saves it as
     #counter
     counter = 0
-    for i, element in enumerate(vector.values[0]):
-      counter += element * 2 ** i
+    for i in range(len((vector.values))):
+      counter += vector.values[i][0] * 2 ** i
   else:
     #in this case checker = True, so it returns the message
     return message
-  new_message = message.values[0]
+  new_message = message.values
   #fixes the message
-  if new_message[counter - 1] == 0:
-    new_message[counter - 1] = 1
+  if new_message[counter - 1][0] == 0:
+    new_message[counter - 1][0] = 1
   else:
-    new_message[counter - 1] = 0
+    new_message[counter - 1][0] = 0
   return Matrix(new_message)
   
 #Example:
@@ -80,16 +84,16 @@ halloencoded = encodeentiremessage(hallobinary)
 for matrix in halloencoded:
   print(matrix)
 hallowrong = [
-  Matrix([[1], [0], [0], [0], [1], [1], [0]]),
-  Matrix([[1], [0], [1], [0], [0], [0], [0]]),
   Matrix([[1], [1], [1], [0], [1], [1], [0]]),
-  Matrix([[1], [1], [0], [1], [1], [0], [1]]),
-  Matrix([[1], [1], [0], [0], [0], [1], [0]]),
-  Matrix([[0], [1], [1], [1], [1], [0], [0]]),
-  Matrix([[1], [1], [0], [0], [1], [1], [0]]),
-  Matrix([[0], [1], [1], [1], [1], [0], [0]]),
-  Matrix([[1], [1], [0], [0], [1], [1], [0]]),
-  Matrix([[1], [1], [1], [1], [1], [1], [1]]),
+  Matrix([[0], [0], [0], [0], [1], [1], [0]]),
+  Matrix([[1], [1], [1], [0], [1], [1], [0]]),
+  Matrix([[1], [0], [0], [1], [1], [1], [1]]),
+  Matrix([[1], [1], [1], [0], [1], [1], [0]]),
+  Matrix([[0], [1], [0], [0], [0], [1], [1]]),
+  Matrix([[1], [1], [1], [0], [1], [1], [0]]),
+  Matrix([[0], [1], [0], [0], [0], [1], [1]]),
+  Matrix([[1], [1], [1], [0], [1], [1], [0]]),
+  Matrix([[0], [1], [1], [1], [1], [1], [1]])
 ]
 hallomayberight = repairentiremessage(hallowrong)
 
