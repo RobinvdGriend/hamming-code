@@ -71,9 +71,19 @@ def messageconverter(message):
     byteappender(emptystring[len(emptystring)//2:])
   return grotelijst
 
+
+  
+
 #Example:
-#boodschap = input('Vul hier je boodschap in: ')
-#boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
+message = input('Vul hier je boodschap in: ')
+messagebinary = list(map(bin, bytearray(boodschap, 'utf8')))
 #print(boodschapbinair)
 #testvector = Matrix([[1, 0, 1, 1]])
 #print(repairmessage(encodemessage(testvector)))
+
+
+convertedmessage = str_to_codelist(messagebinary)
+checkedmessage = repairmessage(convertedmessage)
+print(codelist_to_str(checkedmessage))
+
+
