@@ -1,4 +1,5 @@
 from matrix import Matrix
+import strconv
 
 #The encoding matrix
 encoding_matrix = Matrix([
@@ -60,3 +61,39 @@ def repairmessage(message):
 #checkedmessage = repairmessage(convertedmessage)
 #print(codelist_to_str(checkedmessage))
 
+#adds paritybits to entire message
+def encodeentiremessage(message):
+    new_list = []
+    for matrix in message:
+      new_list.append(encodemessage(matrix))
+    return new_list
+
+#repairs entire message    
+def repairentiremessage(message):
+    new_list = []
+    for matrix in message:
+      new_list.append(repairmessage(matrix))
+    return new_list      
+
+hallobinary = strconv.str_to_codelist('hallo')
+halloencoded = encodeentiremessage(hallobinary)
+for matrix in halloencoded:
+  print(matrix)
+hallowrong = [
+  Matrix([[1], [0], [0], [0], [1], [1], [0]]),
+  Matrix([[1], [0], [1], [0], [0], [0], [0]]),
+  Matrix([[1], [1], [1], [0], [1], [1], [0]]),
+  Matrix([[1], [1], [0], [1], [1], [0], [1]]),
+  Matrix([[1], [1], [0], [0], [0], [1], [0]]),
+  Matrix([[0], [1], [1], [1], [1], [0], [0]]),
+  Matrix([[1], [1], [0], [0], [1], [1], [0]]),
+  Matrix([[0], [1], [1], [1], [1], [0], [0]]),
+  Matrix([[1], [1], [0], [0], [1], [1], [0]]),
+  Matrix([[1], [1], [1], [1], [1], [1], [1]]),
+]
+hallomayberight = repairentiremessage(hallowrong)
+
+print('\n')
+
+for matrix in hallomayberight:
+  print(matrix)
