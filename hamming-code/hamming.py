@@ -52,6 +52,11 @@ def repairmessage(message):
   return Matrix(new_message)
   
 #Example:
-#boodschap = input('Vul hier je boodschap in: ')
+#print(boodschapbinair)
 #testvector = Matrix([[1, 0, 1, 1]])
 #print(repairmessage(encodemessage(testvector)))
+
+#convertedmessage = str_to_codelist(messagebinary)
+#checkedmessage = repairmessage(convertedmessage)
+#print(codelist_to_str(checkedmessage))
+

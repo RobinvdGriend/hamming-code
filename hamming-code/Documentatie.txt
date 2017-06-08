@@ -1,0 +1,9 @@
+TAAKVERDELING:
+
+geen
+
+COMPLEXITEIT ALGORITHMES
+We drukken de complexiteit uit in n := de lengte van de boodschap. Of dit in bits of in tekens is, maakt niet uit omdat elk teken 8 bits is, en in grote O notatie maakt dit niet uit.
+
+UITLEG CODE
+We beschouwen functies in dit verslag als een blackbox. In de code zelf wordt met comments uitgelegd hoe dit werkt.
