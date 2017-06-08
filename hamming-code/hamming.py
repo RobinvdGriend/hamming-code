@@ -21,7 +21,6 @@ checking_matrix = Matrix([
 #Takes binary vector of length 4 and adds the parity bits
 #Returns result as vector
 def encodemessage(message):
-  print(message.transpose())
   vector_with_paritybits = encoding_matrix*(message.transpose())
   return Matrix(vector_with_paritybits.getbinary())
 
