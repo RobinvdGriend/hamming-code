@@ -38,7 +38,7 @@ def repairmessage(message):
     #finds out at what position the mistake is and saves it as
     #counter
     counter = 0
-    for i, element enumerate(vector.values[0]):
+    for i, element in enumerate(vector.values[0]):
       counter += element * 2 ** i
   else:
     #in this case checker = True, so it returns the message
@@ -70,8 +70,8 @@ def messageconverter(message):
   return grotelijst  
 
 #Example:
-boodschap = input('Vul hier je boodschap in: ')
-boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
-print(boodschapbinair)
-testvector = Matrix([[1, 0, 1, 1]])
-print(repairmessage(encodemessage(testvector)))
+#boodschap = input('Vul hier je boodschap in: ')
+#boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
+#print(boodschapbinair)
+#testvector = Matrix([[1, 0, 1, 1]])
+#print(repairmessage(encodemessage(testvector)))
