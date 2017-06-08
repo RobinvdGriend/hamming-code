@@ -38,7 +38,7 @@ def repairmessage(message):
     #finds out at what position the mistake is and saves it as
     #counter
     counter = 0
-    for i, element enumerate(vector.values[0]):
+    for i, element in enumerate(vector.values[0]):
       counter += element * 2 ** i
   else:
     #in this case checker = True, so it returns the message
@@ -62,12 +62,14 @@ def messageconverter(message):
   #For every letter in removes b from the string
   for letter in boodschapbinair:
     emptystring = ''
-    for i in range(0,9):
+    for i in range(0,len(letter)):
       if i != 1:
         emptystring = emptystring + letter[i]
+    while len(emptystring) < 8:
+      emptystring = '0' + emptystring
     byteappender(emptystring[:len(emptystring)//2])
     byteappender(emptystring[len(emptystring)//2:])
-  return grotelijst  
+  return grotelijst
 
 #Example:
 boodschap = input('Vul hier je boodschap in: ')
