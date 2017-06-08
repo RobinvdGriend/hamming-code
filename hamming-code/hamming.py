@@ -26,6 +26,7 @@ def encodemessage(message):
   return Matrix(vector_with_paritybits.getbinary())
 
 #repairs message, may not work, can't test it yet 
+#Takes a matrix
 def repairmessage(message):
   vector = checking_matrix*message
   checker = True
@@ -51,29 +52,7 @@ def repairmessage(message):
     new_message[counter - 1] = 0
   return Matrix(new_message)
   
-def messageconverter(message):
-  grotelijst = []
-  #Appends the described byte into the list with matrices
-  def byteappender(byte):
-    lijst = []
-    for i in byte:
-      lijst.append(int(i))
-    grotelijst.append(Matrix(lijst))
-  #For every letter in removes b from the string
-  for letter in boodschapbinair:
-    emptystring = ''
-    for i in range(0,len(letter)):
-      if i != 1:
-        emptystring = emptystring + letter[i]
-    while len(emptystring) < 8:
-      emptystring = '0' + emptystring
-    byteappender(emptystring[:len(emptystring)//2])
-    byteappender(emptystring[len(emptystring)//2:])
-  return grotelijst
-
 #Example:
 #boodschap = input('Vul hier je boodschap in: ')
-#boodschapbinair = list(map(bin, bytearray(boodschap, 'utf8')))
-#print(boodschapbinair)
 #testvector = Matrix([[1, 0, 1, 1]])
 #print(repairmessage(encodemessage(testvector)))
