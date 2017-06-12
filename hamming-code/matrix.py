@@ -41,7 +41,7 @@ class Matrix:
         new_element = element + other.values[i][j]
         new_row.append(new_element)
       new_matrix.append(new_row)
-    return new_matrix
+    return Matrix(new_matrix)
 
   
   #takes modulo two of each entry in the matrix    
@@ -53,7 +53,7 @@ class Matrix:
         new_element = element%2
         new_row.append(new_element)
       new_matrix.append(new_row)
-    return new_matrix
+    return Matrix(new_matrix)
   
   def __str__(self):
     return str(self.values)

@@ -27,7 +27,7 @@ checking_matrix = Matrix([
 #Returns result as vector
 def encodemessage(message):
   vector_with_paritybits = encoding_matrix*(message.transpose())
-  return Matrix(vector_with_paritybits.getbinary())
+  return vector_with_paritybits.getbinary()
 
 #repairs message, may not work, can't test it yet 
 #Takes a matrix
@@ -84,7 +84,7 @@ halloencoded = encodeentiremessage(hallobinary)
 for matrix in halloencoded:
   print(matrix)
 hallowrong = [
-  Matrix([[1], [1], [1], [0], [1], [1], [0]]),
+  Matrix([[0], [1], [1], [1], [1], [1], [0]]),
   Matrix([[0], [0], [0], [0], [1], [1], [0]]),
   Matrix([[1], [1], [1], [0], [1], [1], [0]]),
   Matrix([[1], [0], [0], [1], [1], [1], [1]]),
