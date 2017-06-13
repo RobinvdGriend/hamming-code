@@ -101,4 +101,4 @@ ENV/
 .mypy_cache/
 
 # vim swap files
-.swp
+*.swp
