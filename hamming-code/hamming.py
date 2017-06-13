@@ -1,9 +1,9 @@
 from matrix import Matrix
 import strconv
 
-#The encoding matrix
-encoding_matrix = Matrix([
-    [1, 0, 0, 0],
+#Generator matrix
+generator_matrix = Matrix([
+    [1, 1, 0, 1],
     [0, 1, 0, 0],
     [0, 0, 1, 0],
     [0, 0, 0, 1],
@@ -12,27 +12,23 @@ encoding_matrix = Matrix([
     [0, 1, 1, 1]
     ])
 
-
-#generating matrix
-generator_matrix = encoding_matrix.transpose()
-
-#checking matrix
-checking_matrix = Matrix([
-  [0, 0, 0, 1, 1, 1, 1],
-  [1, 1, 0, 0, 0, 1, 1],
-  [1, 0, 1, 0, 1, 0, 1]
+#parity-check matrix
+parity_check_matrix = Matrix([
+  [1, 0, 1, 0, 1, 0, 1],
+  [0, 1, 1, 0, 0, 1, 1],
+  [0, 0, 0, 1, 1, 1, 1]
   ])
 
 #Takes binary vector of length 4 and adds the parity bits
 #Returns result as vector
 def encodemessage(message):
-  vector_with_paritybits = encoding_matrix*(message.transpose())
+  vector_with_paritybits = generator_matrix*(message.transpose())
   return vector_with_paritybits.getbinary()
 
 #repairs message, may not work, can't test it yet 
 #Takes a matrix
 def repairmessage(message):
-  vector = (checking_matrix*message).getbinary()
+  vector = (parity_check_matrix*message).getbinary()
   print(vector)
   checker = True
   #checks if the return vector is the zero vector. If this is the case
