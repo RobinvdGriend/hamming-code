@@ -1,7 +1,7 @@
 import random
 from copy import deepcopy
 from matrix import Matrix
-
+#hier moet ik nog wat opmerkingen aan toevoegen
 def errormaker(encodelist):
     errorlist = deepcopy(encodelist)
     for i in range(len(Matrix(errorlist).values)):
