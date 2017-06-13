@@ -17,7 +17,15 @@ class Matrix:
       new_matrix.append(new_row)
     return Matrix(new_matrix)
 
-
+  #takes two arguments, the first is the position (str with two numbers),
+  #the second is what the
+  #entry should be changed to
+  def change_element(self, position, value):
+    new_matrix = self.values
+    position1 = int(position[0])
+    position2 = int(position[1])
+    new_matrix[position1 - 1][position2 - 1] = value
+    return Matrix(new_matrix)
   
   #takes two matrices A and B as arguments and returns AB. Overrides the * operator
   def __mul__(self, other):
