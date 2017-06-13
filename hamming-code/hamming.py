@@ -29,12 +29,11 @@ def encodemessage(message):
 #Takes a matrix
 def repairmessage(message):
   vector = (parity_check_matrix*message).getbinary()
-  print(vector)
   checker = True
   #checks if the return vector is the zero vector. If this is the case
   #checker = True, and there is no mistake
-  for element in vector.values[0]:
-    if element == 1:
+  for i in range(len(vector.values)):
+    if vector.values[i][0] == 1:
       checker = False
   if checker == False:
     #finds out at what position the mistake is and saves it as
@@ -45,21 +44,9 @@ def repairmessage(message):
   else:
     #in this case checker = True, so it returns the message
     return message
-#  print(counter)
-
   new_message = message.values
   #fixes the message
-  if counter == 3:
-    if new_message[0][0] == 0:
-      new_message[0][0] = 1
-    else:
-      new_message[1][0] = 0
-  elif counter == 1:
-    if new_message[2][0] == 0:
-      new_message[2][0] = 1
-    else:
-      new_message[2][0] = 0
-  elif new_message[counter - 1][0] == 0:
+  if new_message[counter - 1][0] == 0:
     new_message[counter - 1][0] = 1
   else:
     new_message[counter - 1][0] = 0
@@ -88,25 +75,36 @@ def repairentiremessage(message):
       new_list.append(repairmessage(matrix))
     return new_list      
 
+
+
+#testcase
 hallobinary = strconv.str_to_codelist('hallo')
 halloencoded = encodeentiremessage(hallobinary)
+
+#print helloencoded
+print('De gecodeerde matrix: ')
 for matrix in halloencoded:
   print(matrix)
+
+#de verkeerde matrix (in rij i zit de i'de bit fout voor 0 < i < 8)
 hallowrong = [
-  Matrix([[1], [1], [0], [0], [1], [1], [0]]),
-  Matrix([[1], [1], [1], [0], [0], [0], [0]]),
-  Matrix([[1], [1], [0], [0], [1], [1], [0]]),
-  Matrix([[1], [1], [0], [1], [0], [0], [1]]),
-  Matrix([[1], [1], [0], [0], [1], [1], [0]]),
-  Matrix([[0], [1], [1], [1], [1], [0], [0]]),
-  Matrix([[1], [1], [0], [0], [1], [1], [0]]),
+  Matrix([[0], [1], [0], [0], [1], [1], [0]]),
+  Matrix([[1], [0], [1], [0], [0], [0], [0]]),
+  Matrix([[1], [1], [1], [0], [1], [1], [0]]),
+  Matrix([[1], [1], [0], [0], [0], [0], [1]]),
+  Matrix([[1], [1], [0], [0], [0], [1], [0]]),
+  Matrix([[0], [1], [1], [1], [1], [1], [0]]),
+  Matrix([[1], [1], [0], [0], [1], [1], [1]]),
   Matrix([[0], [1], [1], [1], [1], [0], [0]]),
   Matrix([[1], [1], [0], [0], [1], [1], [0]]),
   Matrix([[1], [1], [1], [1], [1], [1], [1]])
 ]
+#de gerepareerde matrix
 hallomayberight = repairentiremessage(hallowrong)
 
 print('\n')
+
+print('De gerepareerde matrix: ')
 
 for matrix in hallomayberight:
   print(matrix)
