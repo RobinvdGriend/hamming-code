@@ -32,7 +32,8 @@ def encodemessage(message):
 #repairs message, may not work, can't test it yet 
 #Takes a matrix
 def repairmessage(message):
-  vector = checking_matrix*message
+  vector = (checking_matrix*message).getbinary()
+  print(vector)
   checker = True
   #checks if the return vector is the zero vector. If this is the case
   #checker = True, and there is no mistake
@@ -48,6 +49,8 @@ def repairmessage(message):
   else:
     #in this case checker = True, so it returns the message
     return message
+  print(counter)
+
   new_message = message.values
   #fixes the message
   if counter == 3:
@@ -95,7 +98,7 @@ for matrix in halloencoded:
   print(matrix)
 hallowrong = [
   Matrix([[0], [1], [1], [1], [1], [1], [0]]),
-  Matrix([[0], [0], [0], [0], [1], [1], [0]]),
+  Matrix([[0], [0], [0], [0], [0], [1], [0]]),
   Matrix([[1], [1], [1], [0], [1], [1], [0]]),
   Matrix([[1], [0], [0], [1], [1], [1], [1]]),
   Matrix([[1], [1], [1], [0], [1], [1], [0]]),
