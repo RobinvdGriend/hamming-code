@@ -50,7 +50,17 @@ def repairmessage(message):
     return message
   new_message = message.values
   #fixes the message
-  if new_message[counter - 1][0] == 0:
+  if counter == 3:
+    if new_message[0][0] == 0:
+      new_message[0][0] = 1
+    else:
+      new_message[1][0] = 0
+  elif counter == 1:
+    if new_message[2][0] == 0:
+      new_message[2][0] = 1
+    else:
+      new_message[2][0] = 0
+  elif new_message[counter - 1][0] == 0:
     new_message[counter - 1][0] = 1
   else:
     new_message[counter - 1][0] = 0
