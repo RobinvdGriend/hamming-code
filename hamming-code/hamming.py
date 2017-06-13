@@ -84,7 +84,12 @@ def destroyparitybits(message):
   del new_message[1]
   return Matrix(new_message)
 
-
+def destroyallparitybits(message):
+    print('type' + str(type(message)))
+    new_list = []
+    for matrix in message:
+      new_list.append(destroyparitybits(matrix))
+    return new_list 
 
 #TESTCASE
 hallobinary = strconv.str_to_codelist('hallo')
@@ -111,6 +116,10 @@ hallowrong = [
 #de gerepareerde matrix
 hallomayberight = repairentiremessage(hallowrong)
 
+#de gerepareerde matrix zonder paritybits
+hallomayberightwithoutparitybits = destroyallparitybits(hallomayberight)
+
+
 print('\n')
 
 print('De gerepareerde matrix: ')
@@ -120,6 +129,13 @@ print('De gerepareerde matrix: ')
 for matrix in hallomayberight:
   print(matrix)
 
+print('\n')
 
+print('Zonder parity bits: ')
+
+print(type(hallomayberight))
+
+for matrix in hallomayberightwithoutparitybits:
+  print(matrix)
 
 
