@@ -85,7 +85,6 @@ def destroyparitybits(message):
   return Matrix(new_message)
 
 def destroyallparitybits(message):
-    print('type' + str(type(message)))
     new_list = []
     for matrix in message:
       new_list.append(destroyparitybits(matrix))
