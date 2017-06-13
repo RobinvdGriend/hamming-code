@@ -75,9 +75,18 @@ def repairentiremessage(message):
       new_list.append(repairmessage(matrix))
     return new_list      
 
+#takes a 7x1 vector, destroys the parity bits and returns
+#what is left
+def destroyparitybits(message):
+  new_message = message.values
+  del new_message[0]
+  del new_message[0]
+  del new_message[1]
+  return Matrix(new_message)
 
 
-#testcase
+
+#TESTCASE
 hallobinary = strconv.str_to_codelist('hallo')
 halloencoded = encodeentiremessage(hallobinary)
 
@@ -106,5 +115,11 @@ print('\n')
 
 print('De gerepareerde matrix: ')
 
+
+
 for matrix in hallomayberight:
   print(matrix)
+
+
+
+
