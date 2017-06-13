@@ -1,5 +1,6 @@
 from matrix import Matrix
 import strconv
+from copy import deepcopy
 
 #Generator matrix
 generator_matrix = Matrix([
@@ -115,8 +116,10 @@ hallowrong = [
 #de gerepareerde matrix
 hallomayberight = repairentiremessage(hallowrong)
 
+hallomayberightgaikslopen = deepcopy(hallomayberight)
+
 #de gerepareerde matrix zonder paritybits
-hallomayberightwithoutparitybits = destroyallparitybits(hallomayberight)
+hallomayberightwithoutparitybits = destroyallparitybits(hallomayberightgaikslopen)
 
 
 print('\n')
@@ -132,7 +135,6 @@ print('\n')
 
 print('Zonder parity bits: ')
 
-print(type(hallomayberight))
 
 for matrix in hallomayberightwithoutparitybits:
   print(matrix)
