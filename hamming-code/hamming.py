@@ -1,4 +1,5 @@
 from matrix import Matrix
+from errormaker import errormaker
 import strconv
 
 #Generator matrix
