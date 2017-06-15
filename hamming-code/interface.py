@@ -1,7 +1,7 @@
 from matrix import Matrix
 from hamming import encodeentiremessage, repairentiremessage, destroyallparitybits
 from strconv import str_to_codelist, codelist_to_str, binary_to_codelist
-from errormaker import errormaker
+from errormaker import errormaker, errormakerstring
 
 def encoderen(message):
     string = ''
