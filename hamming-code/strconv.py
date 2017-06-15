@@ -10,8 +10,8 @@ def str_to_codelist(string):
     # for every letter removes b from the string
     for byte in bytelist:
         code = [int(x) for x in list(bin(byte)[2:].zfill(8))]
-        codelist.append(matrix([code[:4]]))
-        codelist.append(matrix([code[4:]]))
+        codelist.append(Matrix([code[:4]]))
+        codelist.append(Matrix([code[4:]]))
     return codelist
 
 
