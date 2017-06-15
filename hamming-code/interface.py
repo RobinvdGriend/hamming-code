@@ -14,9 +14,8 @@ def encoderen(message):
 
 def decoderen(message):
     matrixlist = binary_to_codelist(message)
-    print(matrixlist)
+    matrixlist = repairentiremessage(matrixlist)
     matrixlistnoparity = destroyallparitybits(matrixlist)
-    print(matrixlistnoparity)
     matrixlistnoparity2 = []
     for matrix in matrixlistnoparity:
         matrixlistnoparity2.append(matrix.transpose())
