@@ -27,6 +27,7 @@ def encodemessage(message):
   vector_with_paritybits = generator_matrix*(message.transpose())
   return vector_with_paritybits.getbinary()
 
+
 #repairs message, may not work, can't test it yet 
 #Takes a matrix
 def repairmessage(message):
@@ -53,15 +54,7 @@ def repairmessage(message):
   else:
     new_message[counter - 1][0] = 0
   return Matrix(new_message)
-  
-#Example:
-#print(boodschapbinair)
-#testvector = Matrix([[1, 0, 1, 1]])
-#print(repairmessage(encodemessage(testvector)))
 
-#convertedmessage = str_to_codelist(messagebinary)
-#checkedmessage = repairmessage(convertedmessage)
-#print(codelist_to_str(checkedmessage))
 
 #adds paritybits to entire message
 def encodeentiremessage(message):
@@ -70,12 +63,14 @@ def encodeentiremessage(message):
       new_list.append(encodemessage(matrix))
     return new_list
 
+
 #repairs entire message    
 def repairentiremessage(message):
     new_list = []
     for matrix in message:
       new_list.append(repairmessage(matrix))
     return new_list      
+
 
 #takes a 7x1 vector, destroys the parity bits and returns
 #what is left
@@ -85,6 +80,7 @@ def destroyparitybits(message):
   del new_message[0]
   del new_message[1]
   return Matrix(new_message)
+
 
 def destroyallparitybits(message):
     new_list = []
