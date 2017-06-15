@@ -28,8 +28,7 @@ def encodemessage(message):
   return vector_with_paritybits.getbinary()
 
 
-#repairs message, may not work, can't test it yet 
-#Takes a matrix
+#Takes a 7 x 1 matrix
 def repairmessage(message):
   vector = (parity_check_matrix*message).getbinary()
   checker = True
