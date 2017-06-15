@@ -1,3 +1,14 @@
+'''
+Het doel van deze comment is obscuur
+en qua geheugengebruik is het duur
+je vraagt je vast af, maar waarom?
+Het antwoord is, heel saai, daarom
+'''
+
+
+
+
+
 class Matrix:
     def __init__(self, values):
         self.values = values
