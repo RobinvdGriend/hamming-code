@@ -44,7 +44,11 @@ def binary_to_codelist(binarystring,codelength=7):
     for byte in bytelist:
         code = [int(x) for x in list(byte)]
         codelist.append(Matrix([code]))
-    return codelist
+    codelist2 = []
+    for vector in codelist:
+        codelist2.append(vector.transpose())
+    
+    return codelist2
 
 def codelist_to_binary(codelist):
     # Takes a list of row matrices and returns a string of bits
