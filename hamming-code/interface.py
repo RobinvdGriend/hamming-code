@@ -25,12 +25,14 @@ def auxilaryprogram():
         finalprogram()
     elif input3 != 'n':
         print('Je moet wel een j of n invullen.')
+        print('')
         auxilaryprogram()
 
 def finalprogram():
     input1 = input('Wilt  u encoderen of decoderen? Type e voor encoderen en d voor decoderen. ')
     if input1 != 'e' and input1 != 'd':
         print('Je moet wel een e of d invullen.')
+        print('')
         finalprogram()
     input2 = input('Vul hier uw boodschap in: ')
     if input1 == 'e':
