@@ -2,20 +2,6 @@ from matrix import Matrix
 from hamming import encodeentiremessage, repairentiremessage, destroyallparitybits
 from strconv import str_to_codelist, codelist_to_str, binary_to_codelist
 
-print('Welkom bij de Hammingcode encoderen/decoderen machine.')
-input1 = input('Wilt  u encoderen of decoderen? Type 1 voor encoderen en 2 voor decoderen')
-input2 = input('Vul hier uw boodschap in: ')
-
-if input1 == '1':
-    print(encoderen(input2)
-elif input == '2':
-    print(decoderen(input2)
-else:
-    print('Je moet wel een 1 of 2 invullen')
-
-
-
-
 def encoderen(message):
     string = ''
     matrixlist = str_to_codelist(message)
@@ -31,9 +17,30 @@ def decoderen(message):
     answer = codelist_to_str(matrixlistnoparity)
 
 
+print('Welkom bij de Hammingcode encoderen/decoderen machine.')
+
+def auxilaryprogram():
+    input3 = input('Wilt u verder gaan? Type j voor ja, en n voor nee. ')
+    if input3 == 'j':
+        finalprogram()
+    elif input3 != 'n':
+        print('Je moet wel een j of n invullen.')
+        auxilaryprogram()
+
+def finalprogram():
+    input1 = input('Wilt  u encoderen of decoderen? Type e voor encoderen en d voor decoderen. ')
+    if input1 != 'e' and input1 != 'd':
+        print('Je moet wel een e of d invullen.')
+        finalprogram()
+    input2 = input('Vul hier uw boodschap in: ')
+    if input1 == 'e':
+        print(encoderen(input2))
+    else:
+        print(decoderen(input2))
+    auxilaryprogram()
 
 
-
+finalprogram()
 
 '''
 def message_to_binstring(message):
