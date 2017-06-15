@@ -1,8 +1,9 @@
 from matrix import Matrix
 
-
 def str_to_codelist(string):
-    # bytes are collections of 4 bits in this case
+    # Takes an ASCII encoded string, converts it to
+    # a list of row matrices with length 4
+
     codelist = []
 
     bytelist = bytearray(string, 'ascii')
@@ -16,7 +17,8 @@ def str_to_codelist(string):
 
 
 def codelist_to_str(codelist):
-    # A codelist is a list of codes, a code being a 4 bit byte
+    # Takes a list of row matrices and returns the ASCII represtation
+    # as a string
     chars = []
 
     # A character is 2 bytes, thus we need every 2 bytes
@@ -33,16 +35,20 @@ def codelist_to_str(codelist):
     return "".join(chars)
 
 def binary_to_codelist(binarystring,codelength=7):
+    # Takes a string of bits (like "1100011") and turns it
+    # into a list of row matrices with length codelength
     codelist = []
     
     bytelist = [binarystring[i:i+codelength] for i in range(0,len(binarystring),codelength)]
 
     for byte in bytelist:
-        code = list(byte)
+        code = [int(x) for x in list(byte)]
         codelist.append(Matrix([code]))
     return codelist
 
 def codelist_to_binary(codelist):
+    # Takes a list of row matrices and returns a string of bits
+    # such as "0100111"
     chars = []
     
     for code in codelist:
