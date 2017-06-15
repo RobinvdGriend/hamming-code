@@ -14,7 +14,11 @@ def encoderen(message):
 def decoderen(message):
     matrixlist = binary_to_codelist(message)
     matrixlistnoparity = destroyallparitybits(matrixlist)
-    answer = codelist_to_str(matrixlistnoparity)
+    matrixlistnoparity2 = []
+    for matrix in matrixlistnoparity:
+        matrixlistnoparity2.append(matrix.transpose())
+    answer = codelist_to_str(matrixlistnoparity2)
+    return answer
 
 
 print('Welkom bij de Hammingcode encoderen/decoderen machine.')
