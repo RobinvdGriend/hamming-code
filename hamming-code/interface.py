@@ -13,14 +13,33 @@ def encoderen(message):
     return string
 
 def decoderen(message):
-    matrixlist = binary_to_codelist(message)
-    matrixlist = repairentiremessage(matrixlist)
-    matrixlistnoparity = destroyallparitybits(matrixlist)
-    matrixlistnoparity2 = []
-    for matrix in matrixlistnoparity:
-        matrixlistnoparity2.append(matrix.transpose())
-    answer = codelist_to_str(matrixlistnoparity2)
-    return answer
+    input1 = input('Wilt u random 1 bits fouten aanbrengen om het bericht te laten herstellen? Type j voor ja, en n voor nee.')
+    if input1 != 'j' and input1 != 'n':
+        print('Je moet wel een j of n invullen.')
+        print('')
+    elif input1 == 'j':
+        message = errormakerstring(message)
+        print('')
+        print('Dit is het bericht met 1 bitsfouten:', message)
+        matrixlist = binary_to_codelist(message)
+        matrixlist = repairentiremessage(matrixlist)
+        matrixlistnoparity = destroyallparitybits(matrixlist)
+        matrixlistnoparity2 = []
+        for matrix in matrixlistnoparity:
+            matrixlistnoparity2.append(matrix.transpose())
+        answer = codelist_to_str(matrixlistnoparity2)
+        print('')
+        print('De code is hersteld en vertaald naar:')
+        return answer
+    elif input1 == 'n':
+        matrixlist = binary_to_codelist(message)
+        matrixlist = repairentiremessage(matrixlist)
+        matrixlistnoparity = destroyallparitybits(matrixlist)
+        matrixlistnoparity2 = []
+        for matrix in matrixlistnoparity:
+            matrixlistnoparity2.append(matrix.transpose())
+        answer = codelist_to_str(matrixlistnoparity2)
+        return answer
 
 
 print('Welkom bij de Hammingcode encoderen/decoderen machine.')
