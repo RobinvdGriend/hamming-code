@@ -19,7 +19,14 @@ We hebben er voor gekozen om gebruik te maken van verschillende modules, we hebb
 	Onze stringconvert bestand is van essentieel belang voor onze hammingcode. De functies die gedefinieerd staan in stringconvert zorgen ervoor dat een string, met name de teskt die mensen willen versturen of opslaan, omzet naar een lijst met matrices. Hierdoor kunnen we ze gebruiken in het Hamming bestand, waar onze Hammingcode wordt uitgevoerd.
 
 \subsection{hamming.py}
-	
+	In dit bestand staat ons algoritme voor de hammingcode. Om te beginnen staat er in de bestand het belangrijkste gedefinieerd van onze hele code. Namelijk de generator en pariteitcheck matrix. In dit bestand staan verder de functies waarmee we pariteit kunnen toevoegen aan bits, eventuele 1 bits fouten kunnen vinden en als deze er zijn herstellen, verder is er nog een functie waarmee we de pariteit van de bits kunnen verwijderen om later in interface.py de string van 1-en 0'en terug te vertalen naar iets wat wij kunnen lezen.
+
+\subsection{errormaker.py}
+	Dit is een klein bestand waarin we 2 functies hebben gedefinieerd: Errormaker, de functie waarmee we random 1 bits fouten kunnen maken in een lijst met vectoren waar pariteitbits aaantoegevoegd zijn, en Errormakerstring de functie waar we in een string van 1-en 0'en random 1 bits fouten kunnen maken.
+
+\subsection{interface.py}
+	Dit is het bestand dat de gebruiker van ons programma moet opstarten. In dit bestand komen alle functies van de andere bestanden samen en worden ze samengebruikt om berichten te encoderen en decoderen, en bij het decoderen eventueel een aantal 1 bits fouten toe tevoegen om te laten zien dat het programma deze fouten kan herstellen.
+
 \section{Complexiteit}
 We drukken de complexiteit uit in de lengte van de boodschap \(n\). Of dit in bits of in tekens is, maakt niet uit omdat elk teken 8 bits is, en in grote O notatie maakt dit niet uit.
 

@@ -1,7 +1,7 @@
 from matrix import Matrix
 from hamming import encodeentiremessage, repairentiremessage, destroyallparitybits
 from strconv import str_to_codelist, codelist_to_str, binary_to_codelist
-from errormaker import errormaker
+from errormaker import errormaker, errormakerstring
 
 def encoderen(message):
     string = ''
@@ -13,15 +13,33 @@ def encoderen(message):
     return string
 
 def decoderen(message):
-    matrixlist = binary_to_codelist(message)
-    print(matrixlist)
-    matrixlistnoparity = destroyallparitybits(matrixlist)
-    print(matrixlistnoparity)
-    matrixlistnoparity2 = []
-    for matrix in matrixlistnoparity:
-        matrixlistnoparity2.append(matrix.transpose())
-    answer = codelist_to_str(matrixlistnoparity2)
-    return answer
+    input1 = input('Wilt u random 1 bits fouten aanbrengen om het bericht te laten herstellen? Type j voor ja, en n voor nee.')
+    if input1 != 'j' and input1 != 'n':
+        print('Je moet wel een j of n invullen.')
+        print('')
+    elif input1 == 'j':
+        message = errormakerstring(message)
+        print('')
+        print('Dit is het bericht met 1 bitsfouten:', message)
+        matrixlist = binary_to_codelist(message)
+        matrixlist = repairentiremessage(matrixlist)
+        matrixlistnoparity = destroyallparitybits(matrixlist)
+        matrixlistnoparity2 = []
+        for matrix in matrixlistnoparity:
+            matrixlistnoparity2.append(matrix.transpose())
+        answer = codelist_to_str(matrixlistnoparity2)
+        print('')
+        print('De code is hersteld en vertaald naar:')
+        return answer
+    elif input1 == 'n':
+        matrixlist = binary_to_codelist(message)
+        matrixlist = repairentiremessage(matrixlist)
+        matrixlistnoparity = destroyallparitybits(matrixlist)
+        matrixlistnoparity2 = []
+        for matrix in matrixlistnoparity:
+            matrixlistnoparity2.append(matrix.transpose())
+        answer = codelist_to_str(matrixlistnoparity2)
+        return answer
 
 
 print('Welkom bij de Hammingcode encoderen/decoderen machine.')
@@ -51,24 +69,4 @@ def finalprogram():
 
 finalprogram()
 
-'''
-def message_to_binstring(message):
-    bytelist = bytearray(message, 'ascii')
-    binstring = ''
-    for byte in bytelist:
-        for digit in list(bin(byte)[2:].zfill(8)):
-            binstring = binstring + digit
-    return binstring
 
-def binstring_to_message(binstring):
-    message = ''
-    while binstring != '':
-        #Every letter is represented by 8 1's and 0's, and the value of the binary number is the letter his chr()
-        letter = chr(int(binstring[:8], 2))
-        message = message + letter
-        binstring = binstring[8:]
-    return message
-    
-print(message_to_binstring(message))
-print(binstring_to_message(message_to_binstring(message)))
-''' 
