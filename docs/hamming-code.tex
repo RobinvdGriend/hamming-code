@@ -1,6 +1,9 @@
 \documentclass[a4paper]{article}
 \usepackage[dutch]{babel}
 \usepackage{mathtools}
+\usepackage{listings}
+
+\lstset{language=Python}
 
 \begin{document}
 \title{Hamming-code in Python 3.6}
@@ -69,4 +72,18 @@ Alles is O(1) behalve het aanroepen van str\_to\_codelist en encodeentiremessage
 \subsection{decoderen}
 
 Alles is O(1) behalve het aanroepen van binary\_to\_codelist, repairentiremessage, destroyallparitybits en codelist\_to\_str die allen O(n) zijn, dus dit is O(n).
+
+\section{Verbeterpunten en mogelijke uitbreidingen van de code}
+De Matrix klasse hebben is een zelfgeschreven library waarvan de interface nog verbetert zou kunnen worden. Zo komt het vaak voor in de code waar we lijst-operaties willen uitvoeren op vectoren, een matrix met 1 rij. Op het moment moet je dan de waarden van de matrix opvragen en opslaan als lijst om vervolgens weer opnieuw een matrix aan te moeten maken met de nieuwe lijst van waarden. Zoals de interface nu is geschreven ontstaan er situaties als deze:
+\begin{lstlisting}
+	code_pairs = [(codelist[i].values[0], 
+		codelist[i + 1].values[0]) 
+		for i in range(0, len(codelist) - 1, 2)]
+\end{lstlisting}
+Dit is een stukje code uit \texttt{strconv.py} waar we een lijst van matrices \texttt{codelist} uit willen pakken en voor elke matrix een lijst-operatie willen uitvoeren. In feite zijn maken we hier nergens gebruik van de Matrix-klasse maar toch staan onze codes opgeslagen in een matrix omdat we matrix-vermenigvuldiging gebruiken in het hamming-algoritme.
+
+Veel beter zou het zijn om een externe library te gebruiken als numpy, waar matrices en vectoren een intuïtieve interface hebben. Ook is de code sneller omdat veel rekenintensieve functies in C zijn geïmplementeerd. Verder zou functionaliteit in \texttt{strconv.py} in de Matrix-klasse gebouwd kunnen worden. Het gaat immers om het omzetten van matrices naar andere objecttypes of vice versa. Op die manier houden we functionaliteit die bij matrices hoort bij elkaar.
+
+We zouden Hamming-codes algemener kunnen implementeren. Een Hamming-code wordt volledig vastgelegd door zijn controle-matrix, de genererende matrix kan immers hieruit bepaald worden. We zouden een code kunnen schrijven die voor algemene (n,k,d)-Hamming codes de \(n \times d\) controle-matrix maakt en hieruit de genererende matrix vindt. Op deze manier hoeven we geen matrices expliciet te definiëren en kunnen we ze "as needed" genereren.
+
 \end{document}
