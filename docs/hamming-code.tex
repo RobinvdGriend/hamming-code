@@ -8,6 +8,7 @@
 \maketitle
 
 \section{Taakverdeling}
+Voor het maken van het algoritme hadden we niet echt een taakverdeling gemaakt. Naarmate we bezig waren kwamen we er wel achter dat het handig was dat Robin bleef werken aan het strconv algoritme, en dat Thomas en Tim bezig waren met de andere onderdelen van de code, en hebben samen vooral veel bugs uit het systeem gehaald.
 
 \section{Ontwerp van de code}
 We hebben er voor gekozen om gebruik te maken van verschillende modules, we hebben voor belangrijke functies een apart bestand aangemaakt. Dit is beter voor de leesbaarheid en maakt het makkelijker om te werken in de code. Hieronder volgt een toelichting voor de verschillende modules.
@@ -28,14 +29,44 @@ We hebben er voor gekozen om gebruik te maken van verschillende modules, we hebb
 	Dit is het bestand dat de gebruiker van ons programma moet opstarten. In dit bestand komen alle functies van de andere bestanden samen en worden ze samengebruikt om berichten te encoderen en decoderen, en bij het decoderen eventueel een aantal 1 bits fouten toe tevoegen om te laten zien dat het programma deze fouten kan herstellen.
 
 \section{Complexiteit}
-We drukken de complexiteit uit in de lengte van de boodschap \(n\). Of dit in bits of in tekens is, maakt niet uit omdat elk teken 8 bits is, en in grote O notatie maakt dit niet uit.
-
-Alle functies behalve encodeentiremessage, repairentiremessage, destroyallparitybits en decodeentiremessage nemen niet de
-boodschap als argument. Deze zijn dus O(1).
+We drukken de complexiteit uit in de lengte van de boodschap \(n\). Of dit in bits of in tekens of in matrices is, maakt niet uit omdat elk teken 8 bits is, en elk teken 1 matrix is. Dus in grote O notatie maakt dit niet uit.
 
 encodeentiremessage is O(n) want message is een lijst van n matrices (elk karakter is 1 matrix), en je loopt 1 keer door de lijst heen, en voert elke keer een constant aantal operaties uit. Een lege lijst new\_message maken en dit returnen hangt niet van n af en is dus constant.
 
-Het geval repairentiremessage is analoog.
+Alle functies behalve $decoderen$, $encoderen$, $binary_to_codelist$, $codelist_to_str$, $str_to_codelist$, $encodeentiremessage$, $repairentiremessage$ en $destroyallparitybits$ krijgen geen boodschap of lijst met matrices als input, dus die zijn O(1). 
+
+\subsection{destroyallparitybits}
+
+Er wordt $n$ keer $destroyparitybits$ aangeroepen, die O(1) is. De rest is O(1), dus de complexiteit is O(n).
+
+\subsection{encodeentiremessage}
+
+Dit is ook O(n), analoog aan $destroyallparitybits$.
+
+\subsection{repairentiremessage}
+
+Dit is ook O(n), analoog aan $destroyallparitybits$.
+
+\subsection{binary\_to\_codelist}
+
+De lijst bytelist aanmaken is O(n). Daarna komen er twee loops die O(n) keer worden aangeroepen, waarin O(1) dingen gebeuren, dus dit algoritme is O(n).
+
+\subsection{codelist\_to\_str}
+
+De lijst codepairs aanmaken is O(n), de loop eronder wordt $n$ keer uitgevoerd en er gebeuren O(1) dingen in, dus dit is ook O(n). Dit algoritme is dus O(n).
+
+\subsection{str\_to\_codelist}
+
+Er wordt een bytearray gemaakt en opgeslagen, dit is O(n). Dan is er een loop van lengte $n$ waarin allerlei O(1) operaties worden uitgevoerd. Dit is dus een O(n) algorithme. 
+
 
 Het geval destroyallparitybits is analoog.
+
+\subsection{encoderen}
+
+Alles is O(1) behalve het aanroepen van str\_to\_codelist en encodeentiremessage, die beiden O(n) zijn, dus dit is O(n).
+
+\subsection{decoderen}
+
+Alles is O(1) behalve het aanroepen van binary\_to\_codelist, repairentiremessage, destroyallparitybits en codelist\_to\_str die allen O(n) zijn, dus dit is O(n).
 \end{document}
