@@ -1,8 +1,12 @@
 from matrix import Matrix
-from hamming import encodeentiremessage, repairentiremessage, destroyallparitybits, length
 from strconv import str_to_codelist, codelist_to_str, binary_to_codelist
-from errormaker import errormaker, errormakerstring
+from errormaker import errormakerstring
 
+begin = input('Voor 7,4 Hammingcode typ 7, voor 8,4 Hammingcode typ 8. ')
+if begin == '7':
+    from hamming74 import encodeentiremessage, repairentiremessage, destroyallparitybits, length
+if begin == '8':
+    from hamming84 import encodeentiremessage, repairentiremessage, destroyallparitybits, length
 def encoderen(message):
     string = ''
     matrixlist = str_to_codelist(message)
@@ -43,8 +47,8 @@ def decoderen(message):
         answer = codelist_to_str(matrixlistnoparity2)
         return answer
 
-
-print('Welkom bij de Hammingcode encoderen/decoderen machine.')
+print('')
+print('Welkom bij de Hammingcode',begin,',4 encoderen/decoderen machine.')
 
 def auxilaryprogram():
     input3 = input('Wilt u verder gaan? Type j voor ja, en n voor nee. ')

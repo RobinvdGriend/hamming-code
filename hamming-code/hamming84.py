@@ -1,25 +1,21 @@
 from matrix import Matrix
-from errormaker import errormaker
 from math import log
 
 #Generator matrix
 generator_matrix = Matrix([
-    [1, 1, 0, 1],
-    [1, 0, 1, 1],
-    [1, 0, 0, 0],
-    [0, 1, 1, 1],
-    [0, 1, 0, 0],
-    [0, 0, 1, 0],
-    [0, 0, 0, 1]
-    ])
+    [1, 1, 1, 0, 0, 0, 0, 1],
+    [1, 0, 0, 1, 1, 0, 0, 1],
+    [0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 1, 0, 1, 0, 0, 1, 0]
+    ]).transpose()
 length = len(generator_matrix.values)
 
-#parity-check matrix
 parity_check_matrix = Matrix([
-  [1, 0, 1, 0, 1, 0, 1],
-  [0, 1, 1, 0, 0, 1, 1],
-  [0, 0, 0, 1, 1, 1, 1]
-  ])
+    [1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 1, 1, 0, 0, 1, 1, 0],
+    [0, 0, 0, 1, 1, 1, 1, 0],
+    [1, 1, 1, 1, 1, 1, 1, 1]
+    ])
 parity_check_matrixtrans = parity_check_matrix.transpose()
 
 dictionary = {'place' : 'value'}
@@ -95,4 +91,3 @@ def destroyallparitybits(message):
     for matrix in message:
       new_list.append(destroyparitybits(matrix))
     return new_list 
-
