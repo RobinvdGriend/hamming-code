@@ -1,7 +1,6 @@
 from matrix import Matrix
 from errormaker import errormaker
-import strconv
-from copy import deepcopy
+from math import log
 
 #Generator matrix
 generator_matrix = Matrix([
@@ -13,6 +12,7 @@ generator_matrix = Matrix([
     [0, 0, 1, 0],
     [0, 0, 0, 1]
     ])
+length = len(generator_matrix.values)
 
 #parity-check matrix
 parity_check_matrix = Matrix([
@@ -20,6 +20,15 @@ parity_check_matrix = Matrix([
   [0, 1, 1, 0, 0, 1, 1],
   [0, 0, 0, 1, 1, 1, 1]
   ])
+parity_check_matrixtrans = parity_check_matrix.transpose()
+
+dictionary = {'place' : 'value'}
+for i in range(len(parity_check_matrixtrans.values)):
+    value = 0
+    for k in range(len(parity_check_matrixtrans.values[i])):
+        value = value + parity_check_matrixtrans.values[i][k] * 2 ** k
+        dictionary[i] = value
+dictionary = {value : place for place, value in dictionary.items()}
 
 #Takes binary vector of length 4 and adds the parity bits
 #Returns result as vector
@@ -48,10 +57,11 @@ def repairmessage(message):
     return message
   new_message = message.values
   #fixes the message
-  if new_message[counter - 1][0] == 0:
-    new_message[counter - 1][0] = 1
+  wrongbit = dictionary[counter]
+  if new_message[wrongbit][0] == 1:
+    new_message[wrongbit][0] = 0
   else:
-    new_message[counter - 1][0] = 0
+    new_message[wrongbit][0] = 1
   return Matrix(new_message)
 
 
@@ -75,9 +85,8 @@ def repairentiremessage(message):
 #what is left
 def destroyparitybits(message):
   new_message = message.values
-  del new_message[0]
-  del new_message[0]
-  del new_message[1]
+  paritybits = [(2**x)-1 for x in range(int(log(length,2)+1))]
+  new_message = [i for j, i in enumerate(new_message) if j not in paritybits]
   return Matrix(new_message)
 
 

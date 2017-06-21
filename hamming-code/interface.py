@@ -1,5 +1,5 @@
 from matrix import Matrix
-from hamming import encodeentiremessage, repairentiremessage, destroyallparitybits
+from hamming import encodeentiremessage, repairentiremessage, destroyallparitybits, length
 from strconv import str_to_codelist, codelist_to_str, binary_to_codelist
 from errormaker import errormaker, errormakerstring
 
@@ -8,7 +8,7 @@ def encoderen(message):
     matrixlist = str_to_codelist(message)
     paritymatrixlist = encodeentiremessage(matrixlist)
     for matrix in paritymatrixlist:
-        for i in range(7):
+        for i in range(length):
             string += str(matrix.values[i][0])
     return string
 
@@ -18,10 +18,10 @@ def decoderen(message):
         print('Je moet wel een j of n invullen.')
         print('')
     elif input1 == 'j':
-        message = errormakerstring(message)
+        message = errormakerstring(message, length)
         print('')
         print('Dit is het bericht met 1 bitsfouten:', message)
-        matrixlist = binary_to_codelist(message)
+        matrixlist = binary_to_codelist(message, length)
         matrixlist = repairentiremessage(matrixlist)
         matrixlistnoparity = destroyallparitybits(matrixlist)
         matrixlistnoparity2 = []
@@ -32,8 +32,10 @@ def decoderen(message):
         print('De code is hersteld en vertaald naar:')
         return answer
     elif input1 == 'n':
-        matrixlist = binary_to_codelist(message)
-        matrixlist = repairentiremessage(matrixlist)
+        matrixlist2 = binary_to_codelist(message, length)
+        matrixlist = repairentiremessage(matrixlist2)
+        if matrixlist != matrixlist2:
+            print('We hebben een fout gecorrigeerd')
         matrixlistnoparity = destroyallparitybits(matrixlist)
         matrixlistnoparity2 = []
         for matrix in matrixlistnoparity:

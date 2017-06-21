@@ -34,7 +34,7 @@ def codelist_to_str(codelist):
         chars.append(chr(int(''.join([str(bit) for bit in bits]), 2)))
     return "".join(chars)
 
-def binary_to_codelist(binarystring,codelength=7):
+def binary_to_codelist(binarystring, codelength):
     # Takes a string of bits (like "1100011") and turns it
     # into a list of row matrices with length codelength
     codelist = []
