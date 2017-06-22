@@ -6,15 +6,13 @@ Het antwoord is, heel saai, daarom
 '''
 
 
-
-
-
 class Matrix:
-    
+
     def __init__(self, values):
         self.values = values
 
     '''returns transpose'''
+
     def transpose(self):
         new_matrix = []
         for i in range(len(self.values[0])):
@@ -28,6 +26,7 @@ class Matrix:
     takes two matrices A and B as arguments and returns AB. Overrides the @
     operator
     '''
+
     def __matmul__(self, other):
         new_matrix = []
         for i, row in enumerate(self.values):
@@ -41,6 +40,7 @@ class Matrix:
         return Matrix(new_matrix)
 
     ''' adds two matrices '''
+
     def __add__(self, other):
         new_matrix = []
         for i, row in enumerate(self.values):
@@ -52,6 +52,7 @@ class Matrix:
         return Matrix(new_matrix)
 
     ''' takes modulo two of each entry in the matrix'''
+
     def getbinary(self):
         new_matrix = []
         for row in self.values:

@@ -16,6 +16,8 @@ if begin == '8':
 '''
 Takes a string as argument, returns the binary representation with paritybits.
 '''
+
+
 def encoderen(message):
     string = ''
     matrixlist = str_to_codelist(message)
@@ -31,8 +33,11 @@ Takes a string of 1 and 0's as argument, gives the option to make a mistake,
 then repairs the string, removes the parity bits, and translates it back into
 a normal string, which was the original message
 '''
+
+
 def decoderen(message):
-    input1 = input('Wilt u random 1 bits fouten aanbrengen om het bericht te laten herstellen? Type j voor ja, en n voor nee.')
+    input1 = input(
+        'Wilt u random 1 bits fouten aanbrengen om het bericht te laten herstellen? Type j voor ja, en n voor nee.')
     if input1 != 'j' and input1 != 'n':
         print('Je moet wel een j of n invullen.')
         print('')
@@ -62,13 +67,16 @@ def decoderen(message):
         answer = codelist_to_str(matrixlistnoparity2)
         return answer
 
+
 print('')
-print('Welkom bij de Hammingcode',begin,',4 encoderen/decoderen machine.')
+print('Welkom bij de Hammingcode', begin, ',4 encoderen/decoderen machine.')
 
 
 '''
 Is used to continue the program if necessary
 '''
+
+
 def auxilaryprogram():
     input3 = input('Wilt u verder gaan? Type j voor ja, en n voor nee. ')
     if input3 == 'j':
@@ -87,8 +95,11 @@ the entire message in one go, the recursion is just a fail safe in
 case the user forgot something, so the odds
 of the recursive depth being exceeded are infinitesimal.
 '''
+
+
 def finalprogram():
-    input1 = input('Wilt  u encoderen of decoderen? Type e voor encoderen en d voor decoderen. ')
+    input1 = input(
+        'Wilt  u encoderen of decoderen? Type e voor encoderen en d voor decoderen. ')
     if input1 != 'e' and input1 != 'd':
         print('Je moet wel een e of d invullen.')
         print('')
@@ -102,5 +113,3 @@ def finalprogram():
 
 
 finalprogram()
-
-
