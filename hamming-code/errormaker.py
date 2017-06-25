@@ -8,7 +8,7 @@ with 1 random integer (0 or 1) changed to a 0 or 1
 '''
 
 
-def errormaker(encodelist, length):
+def errormakerlist(encodelist, length):
     errorlist = deepcopy(encodelist)
     for i in range(len(Matrix(errorlist).values)):
         r = random.randint(0, length - 1)
