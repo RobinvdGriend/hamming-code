@@ -3,6 +3,8 @@
 \usepackage{mathtools}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
 
 \lstset{language=Python}
 
@@ -24,78 +26,79 @@ We gebruiken databits met lengte 4, vandaar de 4 in de naam Hamming-code(7,4). W
 \subsection{Hamming-code met matrixvermenigvuldiging}
 Hier nemen we ook weer onze (7,4) Hamming-code als voorbeeld. Onze Hamming-code berust op matrixvermenigvulding. Daarbij gebruiken we twee matrices, namelijk de Codeermatrix, ook wel de getransponeerde van de \\
 Generatormatrix:
-$\begin{pmatrix}
-1&0&0&0 \\
-0&1&0&0 \\
-0&0&1&0 \\
-0&0&0&1 \\
-1&1&0&1 \\
-1&0&1&1 \\
-0&1&1&1
-\end{pmatrix}
-$\\
-Merk op dat deze matrix kolommen heeft van lengte 7, daar komt de 7 vandaan in de naam. Bovendien betekent dit dus ook, zoals we in de vorige sectie gezien hebben, dat er 3 pariteitsbits worden toegevoegd. Naast deze matrix hebben we ook nog de decodeermatrix, ook wel de Pariteitscheckmatrix:
-$\begin{pmatrix}
-1&0&1&0&1&0&1 \\
-0&1&1&0&0&1&1 \\
-0&0&0&1&1&1&1
+\begin{equation*}
+	\begin{pmatrix}
+		1&0&0&0 \\
+		0&1&0&0 \\
+		0&0&1&0 \\
+		0&0&0&1 \\
+		1&1&0&1 \\
+		1&0&1&1 \\
+		0&1&1&1
+	\end{pmatrix}
+\end{equation*}
 
-\end{pmatrix}
-$\\ 
+Merk op dat deze matrix kolommen heeft van lengte 7, daar komt de 7 vandaan in de naam. Bovendien betekent dit dus ook, zoals we in de vorige sectie gezien hebben, dat er 3 pariteitsbits worden toegevoegd. Naast deze matrix hebben we ook nog de decodeermatrix, ook wel de Pariteitscheckmatrix:
+\begin{equation*}
+	\begin{pmatrix}
+	1&0&1&0&1&0&1 \\
+	0&1&1&0&0&1&1 \\
+	0&0&0&1&1&1&1
+	\end{pmatrix}
+\end{equation*}
 We gebruiken ook hier weer een 4 bitdatawoord.
 Als we het 4 bit datawoord vermenigvuldigen met de Generatormatrix krijgen we dus het datawoord met pariteit. Als voorbeeld gebruiken we de kolomvector (1,1,0,0).\\
-$\begin{pmatrix}
-1&0&0&0 \\
-0&1&0&0 \\
-0&0&1&0 \\
-0&0&0&1 \\
-1&1&0&1 \\
-1&0&1&1 \\
-0&1&1&1
-\end{pmatrix}
-$
-$\begin{pmatrix}
-1\\1\\0\\0
-\end{pmatrix}
-$
-= $\begin{pmatrix}
-0\\1\\1\\1\\1\\0\\0
-\end{pmatrix}
-$
-\\Als we het 4 bit datawoord, met pariteit, vermenigvuldigen met de Pariteitscheckmatrix komt er, weer modulo 2 rekenend, de nulvector uit als er geen fout in zit. Zit er wel een fout in dat komt er een vector uit die aangeeft op welke plek de fout zit. Hieronder volgt het voorbeeld met de vector (0,1,1,1,1,0,0), oftewel de vector (1,1,0,0) waaraan we pariteit hebben toegevoegd.\\
-$\begin{pmatrix}
-1&0&1&0&1&0&1 \\
-0&1&1&0&0&1&1 \\
-0&0&0&1&1&1&1
+\begin{equation*}
+	\begin{pmatrix}
+		1&0&0&0 \\
+		0&1&0&0 \\
+		0&0&1&0 \\
+		0&0&0&1 \\
+		1&1&0&1 \\
+		1&0&1&1 \\
+		0&1&1&1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1\\1\\0\\0
+	\end{pmatrix}
+	= 
+	\begin{pmatrix}
+		0\\1\\1\\1\\1\\0\\0
+	\end{pmatrix}
+\end{equation*}
 
-\end{pmatrix}
-$
-$
-\begin{pmatrix}
-0\\1\\1\\1\\1\\0\\0
-\end{pmatrix}
-$
-= $\begin{pmatrix}
-	0\\0\\0
-\end{pmatrix}
-$, we zien dus dat hier geen fout in zit.
+Als we het 4 bit datawoord, met pariteit, vermenigvuldigen met de Pariteitscheckmatrix komt er, weer modulo 2 rekenend, de nulvector uit als er geen fout in zit. Zit er wel een fout in dat komt er een vector uit die aangeeft op welke plek de fout zit. Hieronder volgt het voorbeeld met de vector (0,1,1,1,1,0,0), oftewel de vector (1,1,0,0) waaraan we pariteit hebben toegevoegd.
+\begin{equation*}
+	\begin{pmatrix}
+		1&0&1&0&1&0&1 \\
+		0&1&1&0&0&1&1 \\
+		0&0&0&1&1&1&1
+	\end{pmatrix}
+	\begin{pmatrix}
+		0\\1\\1\\1\\1\\0\\0
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0\\0\\0
+	\end{pmatrix}
+\end{equation*}
+, we zien dus dat hier geen fout in zit.
 \\ Voegen we nu een fout toe op de eerste plek in de vector, dan krijgen we:\\
- $\begin{pmatrix}
-1&0&1&0&1&0&1 \\
-0&1&1&0&0&1&1 \\
-0&0&0&1&1&1&1
+\begin{equation*}
+	\begin{pmatrix}
+		1&0&1&0&1&0&1 \\
+		0&1&1&0&0&1&1 \\
+		0&0&0&1&1&1&1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1\\1\\1\\1\\1\\0\\0
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		1\\0\\0
+	\end{pmatrix}
+ \end{equation*}
 
-\end{pmatrix}
-$
-$
-\begin{pmatrix}
-1\\1\\1\\1\\1\\0\\0
-\end{pmatrix}
-$
-= $\begin{pmatrix}
-1\\0\\0
-\end{pmatrix}
-$\\
 Nu zoeken we de kolomvector (1,0,0) op in de Pariteitscheckmatrix, we zien dat deze in de eerste kolom staat dus volgt hieruit dat er een fout zit op de eerste bitplek. Merk op dat als er dus op 2 verschillende plekken fouten ontstaan we deze alleen maar kunnen detecteren en niet kunnen herstellen!
 \section{Ontwerp van de code}
 We hebben er voor gekozen om gebruik te maken van verschillende modules, we hebben voor belangrijke functies een apart bestand aangemaakt. Dit is beter voor de leesbaarheid en maakt het makkelijker om te werken in de code. Hieronder volgt een toelichting voor de verschillende modules.
@@ -119,8 +122,6 @@ We hebben er voor gekozen om gebruik te maken van verschillende modules, we hebb
 Onze code is opgebouwd uit een aantal modules die gebruikt worden in verschillende algoritmen. Onze belangrijkste module is de class Matrix die gedefinieerd staat in matrix.py, deze module wordt in alle andere algoritmen gebruikt. Daarnaast is onze code opgebouwd uit de hammingcode zelf, waarbij er geen wezenlijk verschil is tussen (7,4) en (8,4) los van de matrices die er in gedefinieerd zijn. Daarnaast is er nog strconv.py en errormaker.py. Al de boven genoemde bestanden worden gebruikt in interface.py. Daar staat het algoritme waar eigenlijk alleen maar de functies worden aangeroepen die van belang zijn voor de output en staan in de andere bestanden.
 
 \includegraphics[height=12cm]{diagram}
-\\
-\\
 Om bovenstaande tekst wat toe te lichten hebben we een flowchart gemaakt van hoe de bestanden met elkaar verbonden zijn. Interface.py krijgt een input en gebruikt daar alle bestanden voor die een pijltje hebben dat naar interface.py wijst. interface.py gebruikt dan deze input en zet het dan om in de gevraagde output. Let wel op dat input en output geen aparte bestanden zijn maar zich in wezen in interface.py bevinden
 
 
@@ -180,17 +181,17 @@ Dit is een stukje code uit \texttt{strconv.py} waar we een lijst van matrices \t
 
 Veel beter zou het zijn om een externe library te gebruiken als numpy, waar matrices en vectoren een intuïtieve interface hebben. Ook is de code sneller omdat veel rekenintensieve functies in C zijn geïmplementeerd. Verder zou functionaliteit in \texttt{strconv.py} in de Matrix-klasse gebouwd kunnen worden. Het gaat immers om het omzetten van matrices naar andere objecttypes of vice versa. Op die manier houden we functionaliteit die bij matrices hoort bij elkaar.
 
-We zouden Hamming-codes algemener kunnen implementeren. Een Hamming-code wordt volledig vastgelegd door zijn controle-matrix, de genererende matrix kan immers hieruit bepaald worden. We zouden een code kunnen schrijven die voor algemene (n,k,d)-Hamming codes de \(n \times d\) controle-matrix maakt en hieruit de genererende matrix vindt. Op deze manier hoeven we geen matrices expliciet te definiëren en kunnen we ze "as needed" genereren.
+We zouden Hamming-codes algemener kunnen implementeren. Een Hamming-code wordt volledig vastgelegd door zijn controle-matrix, de genererende matrix kan immers hieruit bepaald worden. We zouden een code kunnen schrijven die voor algemene (n,k,d)-Hamming codes de \(n \times d\) controle-matrix maakt en hieruit de genererende matrix vindt. Op deze manier hoeven we geen matrices expliciet te definiëren en kunnen we ze 'as needed' genereren.
 
 Wat ook verbeterd kan worden is het feit dat we nu 2 vrijwel dezelfde bestanden hebben, hamming74.py en hamming84.py. Het enige verschil zoals al aangekaart in het verslag zijn de gedefinieerde matrices. Dit zou misschien wel in \'e\'en bestand kunnen. Want alle functies in beide bestanden zijn alleen nog afhankelijk van het aantal rijen in de generator matrix. Daarnaast belemmerd str\_to\_codelist in strconv.py ons nog om het algoritme te gebruiken bij hammingcode's waarbij het bit-woord ongelijk is aan 4. Dit zouden we kunnen verbeteren door een algemenere functie te maken die afhankelijk van het aantal kolommen in de generatormatrix het bit-datawoord in de codelist zet zodat we daar dan pariteit aan toe kunnen voegen. Waardoor onze Hamming-code gedefinieerd is voor elke lengte van het bit-datawoord.
 
 \section{De Gebruikershandleiding}
-Om ons programma te kunnen gebruiken dient u, het bestand: interface.py te openen. Merk op dat u hiervoor wel python 3.6.1 op uw computer ge\"instaleerd moet hebben. Heeft u dit niet dan gaat u naar www.python.org, de website van de programeertaal, en download u daar de versie 3.6.1.\\
-\\
-Als u nu interface.py heeft opgestart volgt u de instructies op het scherm. Wilt u een bericht klaar maken voor transmissie? Dan gebruikt u encoding.\\
-\\
-Heeft een bericht ontvangen, dan gebruikt u decoding en kiest u 'nee' als er wordt gevraagd of u random 1 bits fouten wilt toevoegen, deze functie is alleen toegevoegd zodat u makkelijk kan checken of het programma daadwerkelijk wel werkt. Anders kan dit ten koste gaan van de correctheid van het bericht dat u als output krijgt.\\
-\\
-Het volgende is bedoelt voor de meer ervaren gebruiker:\\
+Om ons programma te kunnen gebruiken dient u, het bestand: interface.py te openen. Merk op dat u hiervoor wel python 3.6.1 op uw computer ge\"instaleerd moet hebben. Heeft u dit niet dan gaat u naar www.python.org, de website van de programeertaal, en download u daar de versie 3.6.1.
+
+Als u nu interface.py heeft opgestart volgt u de instructies op het scherm. Wilt u een bericht klaar maken voor transmissie? Dan gebruikt u encoding.
+
+Heeft een bericht ontvangen, dan gebruikt u decoding en kiest u 'nee' als er wordt gevraagd of u random 1 bits fouten wilt toevoegen, deze functie is alleen toegevoegd zodat u makkelijk kan checken of het programma daadwerkelijk wel werkt. Anders kan dit ten koste gaan van de correctheid van het bericht dat u als output krijgt.
+
+Het volgende is bedoelt voor de meer ervaren gebruiker:
 Er zijn enkele functies die niet gebruikt worden in de code maar, die we wel hebben toegevoegd. codelist\_to\_binary in strconv.py en errormakerlist in errormaker.py. U kunt deze functies gebruiken wanneer u wilt, maar dan moeten er wel kleine aanpassingen in de code worden aangebracht. Deze functies zijn echter op dit moment niet nodig om de code te laten functioneren.
 \end{document}
