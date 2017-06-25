@@ -7,12 +7,16 @@ from errormaker import errormakerstring
 Chooses to import either the 7,4 or 8,4 variant of a function
 '''
 
-begin = input('Voor 7,4 Hammingcode typ 7, voor 8,4 Hammingcode typ 8. ')
+begin = input('Voor (7,4) Hamming-code typ 7, voor (8,4) Hamming-code typ 8. ')
 if begin == '7':
     from hamming74 import encodeentiremessage, repairentiremessage, destroyallparitybits, length
 if begin == '8':
     from hamming84 import encodeentiremessage, repairentiremessage, destroyallparitybits, length
-
+if begin != '7' and begin!= '8':
+    begin = 7
+    print('dat is geen geldige input, we starten nu Hamming-code(7,4)')
+    from hamming74 import encodeentiremessage, repairentiremessage, destroyallparitybits, length
+    
 '''
 Takes a string as argument, returns the binary representation with paritybits.
 '''
