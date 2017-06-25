@@ -5,6 +5,8 @@
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{parskip}
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
 
 \lstset{language=Python}
 
@@ -13,11 +15,13 @@
 \author{Robin van de Griend, Thomas Koopman, Tim Waroux}
 \maketitle
 
+\tableofcontents
+
 \section{Taakverdeling}
 Voor het maken van het algoritme hadden we niet echt een taakverdeling gemaakt. Naarmate we bezig waren kwamen we er wel achter dat het handig was dat Robin bleef werken aan het strconv algoritme, en dat Thomas en Tim bezig waren met de andere onderdelen van de code, en hebben samen vooral veel bugs uit het systeem gehaald. We hadden daarentegen de taken voor het schrijven van het verslag wel verdeeld. Robin heeft zich bezig gehouden met de mogelijke verbeterpunten, Thomas heeft zich bezig gehouden met de complexiteit van de algoritmen en functies. Terwijl Tim de opbouw en het ontwerp van de code geschreven heeft. We hadden bovendien afgesproken dat we alles om en nabij 19 juni 2017 af wilde hebben en dit is voor de code grotendeels gelukt en ook had iedereen toen zijn stukje geschreven voor het verslag. Hierna konden we de feedback die Matthijs ons gegeven heeft op onze code nog verwerken.
 
 \section{Wat is een Hamming-code?}
-In de codeertheorie houdt men zich bezig met het vertalen van informatie naar een formelere vorm. Hierdoor wil men voorkomen dat, door een toegevoegde waarde te cree\"eren, de informatie afgeschermt is voor ongewenste toegang of bijvoorbeeld de informatie te beschermen tegen transmissies, denk hierbij bijvoorbeeld aan het opslaan van data op je computer, of het gebruik van data in het RAM-geheugen. Een Hamming-code wordt gebruikt om informatie te bescheremen tegen foutjes die op kunnen treden bij deze soorten transmissie. Hierbij kunnen we onderscheid maken tussen foutdetectie en foutcorrectie. Hamming-codes zijn in beide gebieden actief. Onze code, waar verder over geschreven wordt in dit verslag, maakt gebruik van de foutcorrectie eigenschap van een Hamming-code. Hamming-codes worden gezien als de grondleggers van de codeertheorie, zonder deze theorie zouden de computersystemen die wij nu betrouwbaar achten, een stuk minder betrouwbaar zijn.
+In de codeertheorie houdt men zich bezig met het vertalen van informatie naar een formelere vorm. Hierdoor wil men voorkomen dat, door een toegevoegde waarde te cree\"eren, de informatie afgeschermt is voor ongewenste toegang of bijvoorbeeld de informatie te beschermen tegen transmissies, denk hierbij bijvoorbeeld aan het opslaan van data op je computer, of het tijdelijk plaatsen van data in het RAM-geheugen. Een Hamming-code wordt gebruikt om informatie te bescheremen tegen foutjes die op kunnen treden bij deze soorten transmissie. Hierbij kunnen we onderscheid maken tussen foutdetectie en foutcorrectie. Hamming-codes zijn in beide gebieden actief. Onze code, waar verder over geschreven wordt in dit verslag, maakt gebruik van de foutcorrectie eigenschap van een Hamming-code. Hamming-codes worden gezien als de grondleggers van de codeertheorie, zonder deze theorie zouden de computersystemen die wij nu betrouwbaar achten, een stuk minder betrouwbaar zijn.
 
 \subsection{Hoe werkt een Hamming-code?}
 Dit leggen we uit aan de hand van een voorbeeld. Namelijk onze (7,4) Hamming-code.
@@ -81,8 +85,8 @@ Als we het 4 bit datawoord, met pariteit, vermenigvuldigen met de Pariteitscheck
 	\begin{pmatrix}
 		0\\0\\0
 	\end{pmatrix}
-\end{equation*}
-, we zien dus dat hier geen fout in zit.
+\end{equation*},
+we zien dus dat hier geen fout in zit.
 \\ Voegen we nu een fout toe op de eerste plek in de vector, dan krijgen we:\\
 \begin{equation*}
 	\begin{pmatrix}
@@ -104,29 +108,29 @@ Nu zoeken we de kolomvector (1,0,0) op in de Pariteitscheckmatrix, we zien dat d
 We hebben er voor gekozen om gebruik te maken van verschillende modules, we hebben voor belangrijke functies een apart bestand aangemaakt. Dit is beter voor de leesbaarheid en maakt het makkelijker om te werken in de code. Hieronder volgt een toelichting voor de verschillende modules.
 
 \subsection{matrix.py}
-	Om te beginnen met het programmeren van de Hammingcode, hebben we ervoor gekozen om eerst een klasse Matrix te definieren. Dit staat eveneens aangegeven in de opdracht die we gevolgd hebben. Hier is al onze code opgebasseerd omdat we bij onze hammingcode gebruik maken van de matrixvermenigvuldiging.
+	Om te beginnen met het programmeren van de Hamming-code, hebben we ervoor gekozen om eerst een klasse Matrix te definieren. Dit staat eveneens aangegeven in de opdracht die we gevolgd hebben. Hier is al onze code opgebasseerd omdat we bij onze hammingcode gebruik maken van de matrixvermenigvuldiging.
 
 \subsection{strconv.py}
-	Onze stringconvert bestand is van essentieel belang voor onze hammingcode. De functies die gedefinieerd staan in stringconvert zorgen ervoor dat een string, met name de teskt die mensen willen versturen of opslaan, omzet naar een lijst met matrices. Hierdoor kunnen we ze gebruiken in het Hamming bestand, waar onze Hammingcode wordt uitgevoerd.
+	Onze stringconvert bestand is van essentieel belang voor onze Hamming-code. De functies die gedefinieerd staan in stringconvert zorgen ervoor dat een string, met name de tekst die mensen willen versturen of opslaan, omzet naar een lijst met matrices. Hierdoor kunnen we ze gebruiken in een van de Hamming bestanden, waar onze Hamming-code wordt uitgevoerd.
 
 \subsection{hamming74 \& hamming84.py}
-	In deze bestanden staan onze algoritmen voor de hammingcode. Hamming84.py is feitelijk een copy van hamming74.py, echter zijn alleen de generatormatrix en de pariteitscheck matrix aangepast. Beide bestanden zijn afhankelijk van de variabele 'length'. Hier door weet het algoritme of het om de (8,4) of om de (7,4) hammingcode gaat. In dit bestand staan verder de functies waarmee we pariteit kunnen toevoegen aan bits, eventuele 1 bits fouten kunnen vinden en als deze er zijn herstellen, verder is er nog een functie waarmee we de pariteit van de bits kunnen verwijderen om later in interface.py de string van 1-en 0'en terug te vertalen naar iets wat wij kunnen lezen.
+	In deze bestanden staan onze algoritmen voor de Hamming-code. Hamming84.py is feitelijk een copy van hamming74.py, echter zijn alleen de generatormatrix en de pariteitscheck matrix aangepast. Beide bestanden zijn afhankelijk van de variabele 'length'. Hier door weet het algoritme of het om de (8,4) of om de (7,4) hammingcode gaat. In dit bestand staan verder de functies waarmee we pariteit kunnen toevoegen aan bits, eventuele 1 bits fouten kunnen vinden en als deze er zijn herstellen, verder is er nog een functie waarmee we de pariteit van de bits kunnen verwijderen om later in interface.py de string van 1-en 0'en terug te vertalen naar iets wat wij kunnen lezen.
 
 \subsection{errormaker.py}
-	Dit is een klein bestand waarin we 2 functies hebben gedefinieerd: Errormaker, de functie waarmee we random 1 bits fouten kunnen maken in een lijst met vectoren waar pariteitbits aaantoegevoegd zijn, en Errormakerstring de functie waar we in een string van 1-en 0'en random 1 bits fouten kunnen maken.	
+	Dit is een klein bestand waarin we 2 functies hebben gedefinieerd: Errormakerlist, de functie waarmee we random 1 bits fouten kunnen maken in een lijst met vectoren waar pariteitbits aan toegevoegd zijn, en Errormakerstring de functie waar we in een string van 1-en 0'en random 1 bits fouten kunnen maken.	
 
 \subsection{interface.py}
-	Dit is het bestand dat de gebruiker van ons programma moet opstarten. In dit bestand komen alle functies van de andere bestanden samen en worden ze samengebruikt om berichten te encoderen en decoderen, en bij het decoderen eventueel een aantal 1 bits fouten toe tevoegen om te laten zien dat het programma deze fouten kan herstellen.
+	Dit is het bestand dat de gebruiker van ons programma moet opstarten. In dit bestand komen alle functies van de andere bestanden samen en worden ze samengebruikt om berichten te encoderen en decoderen, en bij het decoderen eventueel een aantal 1 bits fouten toe tevoegen om te laten zien dat het programma deze fouten kan herstellen. Bovendien als er een bericht met fouten wordt ingevoerd dan hersteld hij dit automatisch.
 	
 \section{Opbouw van de code}
-Onze code is opgebouwd uit een aantal modules die gebruikt worden in verschillende algoritmen. Onze belangrijkste module is de class Matrix die gedefinieerd staat in matrix.py, deze module wordt in alle andere algoritmen gebruikt. Daarnaast is onze code opgebouwd uit de hammingcode zelf, waarbij er geen wezenlijk verschil is tussen (7,4) en (8,4) los van de matrices die er in gedefinieerd zijn. Daarnaast is er nog strconv.py en errormaker.py. Al de boven genoemde bestanden worden gebruikt in interface.py. Daar staat het algoritme waar eigenlijk alleen maar de functies worden aangeroepen die van belang zijn voor de output en staan in de andere bestanden.
+Onze code is opgebouwd uit een aantal modules die gebruikt worden in verschillende algoritmen. Onze belangrijkste module is de class Matrix die gedefinieerd staat in matrix.py, deze module wordt in alle andere algoritmen gebruikt. Daarnaast is onze code opgebouwd uit de hammingcode zelf, waarbij er geen wezenlijk verschil is, zoals in hierboven bij ontwerp al te lezen was, tussen (7,4) en (8,4) los van de matrices die er in gedefinieerd zijn. Daarnaast is er nog strconv.py en errormaker.py. Al de bovenstaande bestanden worden gebruikt in interface.py. Daar staat het algoritme waar eigenlijk alleen maar de functies worden aangeroepen die van belang zijn voor de output en staan in de andere bestanden.
 
 \includegraphics[height=12cm]{diagram}
 Om bovenstaande tekst wat toe te lichten hebben we een flowchart gemaakt van hoe de bestanden met elkaar verbonden zijn. Interface.py krijgt een input en gebruikt daar alle bestanden voor die een pijltje hebben dat naar interface.py wijst. interface.py gebruikt dan deze input en zet het dan om in de gevraagde output. Let wel op dat input en output geen aparte bestanden zijn maar zich in wezen in interface.py bevinden
 
 
 \section{Complexiteit}
-We drukken de complexiteit uit in de lengte van de boodschap \(n\). Of dit in bits of in tekens of in matrices is, maakt niet uit omdat elk teken 8 bits is, en elk teken 1 matrix is. Dus in grote O notatie maakt dit niet uit.
+We drukken de complexiteit uit in de lengte van de boodschap \(n\). Of dit in bits, in tekens of in matrices is, maakt niet uit omdat elk teken 8 bits is, en elk teken 1 matrix is. Dus in grote O notatie maakt dit niet uit.
 
 encodeentiremessage is O(n) want message is een lijst van n matrices (elk karakter is 1 matrix), en je loopt 1 keer door de lijst heen, en voert elke keer een constant aantal operaties uit. Een lege lijst new\_message maken en dit returnen hangt niet van n af en is dus constant.
 
@@ -183,7 +187,7 @@ Veel beter zou het zijn om een externe library te gebruiken als numpy, waar matr
 
 We zouden Hamming-codes algemener kunnen implementeren. Een Hamming-code wordt volledig vastgelegd door zijn controle-matrix, de genererende matrix kan immers hieruit bepaald worden. We zouden een code kunnen schrijven die voor algemene (n,k,d)-Hamming codes de \(n \times d\) controle-matrix maakt en hieruit de genererende matrix vindt. Op deze manier hoeven we geen matrices expliciet te definiëren en kunnen we ze 'as needed' genereren.
 
-Wat ook verbeterd kan worden is het feit dat we nu 2 vrijwel dezelfde bestanden hebben, hamming74.py en hamming84.py. Het enige verschil zoals al aangekaart in het verslag zijn de gedefinieerde matrices. Dit zou misschien wel in \'e\'en bestand kunnen. Want alle functies in beide bestanden zijn alleen nog afhankelijk van het aantal rijen in de generator matrix. Daarnaast belemmerd str\_to\_codelist in strconv.py ons nog om het algoritme te gebruiken bij hammingcode's waarbij het bit-woord ongelijk is aan 4. Dit zouden we kunnen verbeteren door een algemenere functie te maken die afhankelijk van het aantal kolommen in de generatormatrix het bit-datawoord in de codelist zet zodat we daar dan pariteit aan toe kunnen voegen. Waardoor onze Hamming-code gedefinieerd is voor elke lengte van het bit-datawoord.
+Wat ook verbeterd kan worden is het feit dat we nu 2 vrijwel dezelfde bestanden hebben, hamming74.py en hamming84.py. Het enige verschil zoals al eerder aangekaart in het verslag zijn de gedefinieerde matrices. Dit zou misschien wel in \'e\'en bestand kunnen. Want alle functies in beide bestanden zijn alleen nog afhankelijk van het aantal rijen in de generator matrix. Daarnaast belemmerd str\_to\_codelist in strconv.py ons nog om het algoritme te gebruiken bij hammingcode's waarbij het bit-woord ongelijk is aan 4. Dit zouden we kunnen verbeteren door een algemenere functie te maken die afhankelijk van het aantal kolommen in de generatormatrix het bit-datawoord in de codelist zet zodat we daar dan pariteit aan toe kunnen voegen. Waardoor onze Hamming-code gedefinieerd is voor elke lengte van het bit-datawoord.
 
 \section{De Gebruikershandleiding}
 Om ons programma te kunnen gebruiken dient u, het bestand: interface.py te openen. Merk op dat u hiervoor wel python 3.6.1 op uw computer ge\"instaleerd moet hebben. Heeft u dit niet dan gaat u naar www.python.org, de website van de programeertaal, en download u daar de versie 3.6.1.
